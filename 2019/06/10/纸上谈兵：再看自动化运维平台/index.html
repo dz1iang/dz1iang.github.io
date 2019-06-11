@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="运维,自动化,运维建设,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="摘要运维平台，日常多次重复的运维操作集成到系统平台，由运维人员发送操作指令，而自动运维平台准确高效完成运维指令的操作。建设运维平台之前，一次线上服务变更需要运维人员提前准备操作list，然后一步一步操作；一次线上业务异常需要运维人员登陆到机器，一个个服务排除。建设运维平台之后，运维人员发起线上变更指令，运维平台稳定快速完成变更；业务异常时，根据运维人员配置的服务检查，平台发起服务异常告警。这些复">
+<meta name="keywords" content="运维,自动化,运维建设">
+<meta property="og:type" content="article">
+<meta property="og:title" content="纸上谈兵：再看自动化运维平台">
+<meta property="og:url" content="http://yoursite.com/2019/06/10/纸上谈兵：再看自动化运维平台/index.html">
+<meta property="og:site_name" content="文艺程序猿">
+<meta property="og:description" content="摘要运维平台，日常多次重复的运维操作集成到系统平台，由运维人员发送操作指令，而自动运维平台准确高效完成运维指令的操作。建设运维平台之前，一次线上服务变更需要运维人员提前准备操作list，然后一步一步操作；一次线上业务异常需要运维人员登陆到机器，一个个服务排除。建设运维平台之后，运维人员发起线上变更指令，运维平台稳定快速完成变更；业务异常时，根据运维人员配置的服务检查，平台发起服务异常告警。这些复">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/006tNc79gy1g3vv575dkij30wg0kqq5c.jpg">
+<meta property="og:updated_time" content="2019-06-11T12:45:53.992Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="纸上谈兵：再看自动化运维平台">
+<meta name="twitter:description" content="摘要运维平台，日常多次重复的运维操作集成到系统平台，由运维人员发送操作指令，而自动运维平台准确高效完成运维指令的操作。建设运维平台之前，一次线上服务变更需要运维人员提前准备操作list，然后一步一步操作；一次线上业务异常需要运维人员登陆到机器，一个个服务排除。建设运维平台之后，运维人员发起线上变更指令，运维平台稳定快速完成变更；业务异常时，根据运维人员配置的服务检查，平台发起服务异常告警。这些复">
+<meta name="twitter:image" content="http://ww4.sinaimg.cn/large/006tNc79gy1g3vv575dkij30wg0kqq5c.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":16,"b2t":"ture","scrollpercent":"ture","onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/10/纸上谈兵：再看自动化运维平台/">
+
+
+
+
+
+  <title>纸上谈兵：再看自动化运维平台 | 文艺程序猿</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">文艺程序猿</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">early bird catches the worm.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/10/纸上谈兵：再看自动化运维平台/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tmac.liang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="文艺程序猿">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">纸上谈兵：再看自动化运维平台</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-10T10:19:34+08:00">
+                2019-06-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/纸上谈兵/" itemprop="url" rel="index">
+                    <span itemprop="name">纸上谈兵</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p><strong>运维平台</strong>，日常多次重复的运维操作集成到系统平台，由运维人员发送操作指令，而自动运维平台准确高效完成运维指令的操作。<strong>建设运维平台之前</strong>，一次线上服务变更需要运维人员提前准备操作list，然后一步一步操作；一次线上业务异常需要运维人员登陆到机器，一个个服务排除。<strong>建设运维平台之后</strong>，运维人员发起线上变更指令，运维平台稳定快速完成变更；业务异常时，根据运维人员配置的服务检查，平台发起服务异常告警。这些复杂的流程在运维平台上自动完成了，接着运维人员又有了更高的追求，<strong>着力于智能运维建设</strong>，根据业务生产历史数据走势，分析日志，提前预测服务即将面临的问题；业务出现异常告警时，自动变更服务，修复异常业务。</p>
+<hr>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>自动化运维平台还是如今的主流，智能运维更多在于探索阶段，当然可以定制标准的pipeline来做一些智能运维的事情。其实这也算是自动化，只是把更多运维模块操作定制为流程，而且，智能运维之前必要自动化平台。所以，这次扯淡还是着重于自动化平台。</p>
+<ul>
+<li><strong>自动化运维</strong>说的最多的是：devops。站在运维角度，使用软件开发的思维，解决日常运维问题。对于整个业务层面，devops提供一种流程方法，打通整个业务中开发、测试、运维、安全等几个模块的工作。这算是第一次提到流程这个字眼了，所有开发部门、测试部门、运维安全部门等的工作其实是可以组织成一个流程，自动化一点就是流水线。devops要做的是打通流程，提供具有较高生产效率的流水线。</li>
+<li><strong>自动化作用</strong>在于流程方法涵盖的模块是否全面，效率提高了多少。一个服务的迭代，从开发到运行在线上生产环境对外提供服务，这个流程使用了多少时间，比自动化之前提高了多少，节省了多少时间、人力成本。同时，运维人员也有评判标准：解决了多少日常复杂重复的运维操作。运维人员每天会有很多操作，有的复杂有的简单，但绝对不能保证所有操作都准确无误完成，或者有的操作人手就好难完成。我们先定制操作流程，devops按照流程标准开发自动工具，帮助运维人员提高日常运维操作效率，降低操作使用风险。</li>
+<li><strong>自动化任务</strong>是建设自动化平台以及日常重复繁杂工作自动化。来细化一下这两项工作，其实都是针对运维，都是有共性：要求按照流程、要求可验证、要求可预见、要求可恢复。从这几个要求，可以得出结论：运维任务首先要提取运维步骤，然后把运维步骤串连成自动化流程，最后devops开发实现流程平台，需要考虑流程操作失败回滚的情况。</li>
+</ul>
+<hr>
+<h3 id="自动化思维"><a href="#自动化思维" class="headerlink" title="自动化思维"></a>自动化思维</h3><p>自动化首要条件需要灌输一种运维思维，运维各项工作以服务作为核心。缺失运维思维的devops开发，只是有dev，而没有ops。当然，devops需要经验积累与实践反馈。</p>
+<ul>
+<li><strong>运维的根源</strong>在于业务，细化成一个个独立又相互联系的服务。所以说，运维各项工作以服务作为核心。每一个服务需要一个标示，可以快速看出来是一个什么样的服务。后续自动化操作基于该服务标示开展，但是，该标示由运维提供统一的命名规范与标准。</li>
+<li><strong>围绕业务</strong>开展运维工作，运维服务于业务。保障业务安全稳定运行；快速定位日常异常问题；准确快速完成线上变更；必要时可以降低业务成本开销。</li>
+<li><strong>自动化必要元素</strong>离不开流程化、规范化、标准化。devops，关注两个方面：dev与ops。使用软件开发的思维方法，解决日常运维的问题，建设运维平台。不同于业务产品多样性，运维更加固定的流程，要求对操作对象可控可预见。对于运维平台，为了更加顺利更加流程完成运维工作，需要对运维流程做规范化，对运维中的元素对象做标准化。例如：对服务做命名的标准化，按照统一标准进行命名；对上线发布流程做统一的流程化，标准化。</li>
+<li><strong>自动化流水线</strong>体现运维了工作中的内容，把一项运维工作拆分为多个元素节点，按照顺序连接起来，然后按部就班去自动执行。例如：cmdb为一个服务创建运行环境：先申请服务器、初始化、在申请周边组件等操作，创建规范的流水线；发布系统变更一个服务：先创建上线包、然后选择发布环境、按照发布环境测试验证、最后发布到生产环境。</li>
+</ul>
+<hr>
+<h3 id="自动化核心"><a href="#自动化核心" class="headerlink" title="自动化核心"></a>自动化核心</h3><p>自动化核心大概有三个方面：核心模块、流程主线、流程规范。核心模块是运维大部分日常工作：资源，迭代，质量；流程主线是大部分运维工作的操作单元或者是操作对象；流程规范就是上面自动化思维说的：制定运维自动化流水线的标准规范。从下面四个展开分析：</p>
+<ul>
+<li><p><strong>运维流程</strong>：在自动化思维中或者在前言部分已经提及过流程，这里不在过多说这和事情了。运维流程需要有经验积累的运维人员，把日常核心的运维事情与复杂重复的运维工作，在逻辑上抽象成运维流程，甚至形成产品文档，再用软件开发的思维实现一个自动化平台。所以说：devops里面，dev与ops缺一不可。最理想的是：运维的人拥有开发的能力，深刻体验到需要一个什么样的平台工具。</p>
+</li>
+<li><p><strong>贯穿流程</strong>：运维之所以复杂或者运维自动化不好实现，之所以运维所涉及的方便特别多，而且每个方面的量又是很大。同时，没有对每个方面做一个梳理归纳，可以想象：运维流程最理想的流程是一条直线，或者只有一两个逻辑分支。而缺饭梳理归纳的过程，流程走到某一步关系很容易出现错中复杂的情况。这时候，无论是运维人员或者devops面对如此复杂情况，都不想往下开展工作，因为做下去有些方面是非常难或者无法开展。那么，为了有一个清晰的运维流程，建设一个有立体化效果的运维平台，有必要提供一个对于运维对象的归纳总结。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们日常在一个集体里面，会被划分到一个团体，再到一个小组。很明显，我们在集体中提问时，很容易被识别出某某团体下某某小组的某人，提了一个问题。同样，在运维中也可以引入这样的思想。其实在很多大公司已经使用了类似的方法，如：百度、滴滴、58同城等。我们可以构建一个运维的组织结构，运维的元素或者对象暂定为：服务、主机。按照组织机构取：部门、小组、项目，服务命名以该几项标示来作为规则，主机命名以服务名追加后缀的数字方式作为规则。</p>
+<ul>
+<li><p><strong>服务命名</strong>：如下信息命名为：ops.monitor.influxdb，如果服务部署在多个机房：ops.monitor.influxdb.tx</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">部门：ops</span><br><span class="line">小组：monitor</span><br><span class="line">项目：influxdb</span><br><span class="line"></span><br><span class="line">机房：tx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>主机命名</strong>：如下服务信息分别命名为：ops.monitor.influxdb.01、ops.monitor.influxdb.tx.01、ops.monitor.influxdb.aliyun.01</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ops.monitor.influxdb</span><br><span class="line">ops.monitor.influxdb.tx</span><br><span class="line">ops.monitor.influxdb.aliyun</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>组织结构</strong>：按照上面的命名规则，把所需要运维的服务、主机统一分类归纳，然后在整个运维工作使用这个组织结构来梳理流程规范，同时避免出现不规范的运维流程带来复杂情况。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>核心模块</strong>：运维的大部分工作围绕：cmdb、deployment、monitor这3个方面开展，所以定义为自动化核心模块。同时，在平台建设过程中，使用组织结构作为主线思路，贯穿这3个方面的自动化建设，把操作的单元或者粒度放到组织结构结构的末端：服务。</p>
+<ul>
+<li><strong>资源管理</strong>：还是比较容易理解，在申请或者创建一个资源，首先知道该资源是用来做什么的，具体一点就是哪个部门或者哪个服务在使用。那么，按照组织结构很快可以找到服务节点，然后把申请的资源挂在到当前服务下。这样，运维人员就可以清晰的知道：哪些服务有哪些资源，哪些资源归于哪个服务，可以一目了然了。对于使用者更加，只关心自己负责的服务下，申请了哪些资源。但是，这样缺少一个全局的资源展示，可以额外补一个功能。</li>
+<li><strong>服务迭代</strong>：在资源管理的时候，已经把主机捆绑到服务节点下了，无论以后扩容或者缩容，在这里都不用关系机器的问题，只关心服务部署到配置的主机即可。主机下线或者缩容即执行服务退出卸载操作，主机上线或者扩容即执行服务安装启动操作。</li>
+<li><strong>质量监控</strong>：质量更多指的是服务的质量以及主机的基础指标。关于服务的质量监控，指标直接在服务节点上配置，同样，告警配置以及所有查询功能也是如是。至于机器的基础项目，直接默认采集上来，查询功能可以根据主机名过滤，而主机名是挂钩了服务，告警配置功能的话依然基于服务操作。</li>
+</ul>
+</li>
+<li><p><strong>操作控制</strong>：为了支持运维流程规范化、标准化落到，需要提供一个通用的流程控制系统，运维平台各个模块使用该通用流程系统创建属于自己的业务pipeline。</p>
+</li>
+</ul>
+<hr>
+<h3 id="自动化框架"><a href="#自动化框架" class="headerlink" title="自动化框架"></a>自动化框架</h3><p>结合运维工作、运维流程、自动化核心3个方面考虑，自动化框架主要建设下面4个方面工作。基础工具分开的目的是：这里的基础是真的运维平台的基石，按照之前的分析是贯穿整个自动化平台的核心模块。业务方面把ci/cd代替了deployment，把自动构建的一部分也包括进来了。功能方面其实是对于业务建设完善后，衍生出来的高级功能，可以说是业务模块的产物。工具方面就是一些支撑业务建设以及运维工作稳定进行的功能。</p>
+<ul>
+<li><strong>基础</strong>：运维标准以及规范是运维工作的基础。组织结构，pipeline这两方面，一个是运维单元或者对象的标准化，一个是运维工作流程的标准化。组织结构可以依赖etcd项目来完成，按照etcd的特性：拥有目录结构的kv键值对，在数据结构上完美符合组织结构的需求。至于pipeline流程方面，应该可以找到很多不错的解决方案。</li>
+<li><strong>业务</strong>：运维工作中cmdb是运维人员最开始的流程，因为一个服务或者项目启动最初先申请资源。而后在服务项目开发完成通过ci/cd发布到线上环境，最后运维需要对新增加的服务配置质量监控，保障服务稳定运行。cmdb对接比较多的是云厂商的api接口，增删查改主机、存储、网络、组件等资源。ci/cd在前期机器比较少的时候，可以使用ssh的方式做发布功能，后期机器数量很多的时候，ssh的方式会很吃力。可以使用c/s+etcd的方案，当然可以把执行的功能做成系统（c/s+etcd），发布过程直接调用执行api来完成，不用再浪费大部分精力在ssh以及单server的并发问题。而质量监控业界有很多优秀的解决方案：open-falcon、prometheus等。</li>
+<li><strong>功能</strong>：从业务模块可以衍生出一些高级的功能，对运维提供的帮助也是非常大。例如：容量规划、服务质量、应急预案等等。这些功能可以有效帮助运维合理规划服务使用资源；对服务质量指定的标准进行打分评判，针对服务质量差的项目查漏补缺；在某监控个服务依赖的服务出现异常时手动触发版本发布去掉异常服务依赖，降低影响，当然，也可以使用监控告警触发降级，但是要对告警的阀值把控好。</li>
+<li><strong>工具</strong>：为了日常运维工作稳定进行，还需要各个方面功能的系统。例如：跳板机、审批流程、域名、vpn等等<br><img src="http://ww4.sinaimg.cn/large/006tNc79gy1g3vv575dkij30wg0kqq5c.jpg" alt></li>
+</ul>
+<h3 id="展望结语"><a href="#展望结语" class="headerlink" title="展望结语"></a>展望结语</h3><ul>
+<li>总结：从原始的手工操作，到运维自动化，运维效率明显提高。自动化运维平台已经是家常便饭，区别在于做的更加好，功能更加高级，对运维的帮助更加大。初始的自动化使一些比较基础，便日常运维的工作。高级的功能在服务运行质量把控等方面，给运维提供较大帮助。</li>
+<li>展望：大部分的运维平台处于高度自动化阶段，正在趋向智能运维方向发展。我个人认为自动化加上pipeline可以做一些智能运维的引导，但是机器学习没有用在运维上，我不想叫做智能运维。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>你的打赏,是我原创的动力</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="tmac.liang 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/运维/" rel="tag"># 运维</a>
+          
+            <a href="/tags/自动化/" rel="tag"># 自动化</a>
+          
+            <a href="/tags/运维建设/" rel="tag"># 运维建设</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/30/hexo-md/" rel="next" title="hexo markdown语法">
+                <i class="fa fa-chevron-left"></i> hexo markdown语法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/11/hexo-use/" rel="prev" title="hexo搭建博客">
+                hexo搭建博客 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">tmac.liang</p>
+              <p class="site-description motion-element" itemprop="description">酒墨</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/dz1iang" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:821478424@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/a821478424" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-globe"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">2.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动化思维"><span class="nav-number">3.</span> <span class="nav-text">自动化思维</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动化核心"><span class="nav-number">4.</span> <span class="nav-text">自动化核心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动化框架"><span class="nav-number">5.</span> <span class="nav-text">自动化框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#展望结语"><span class="nav-number">6.</span> <span class="nav-text">展望结语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tmac.liang</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
